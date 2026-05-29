@@ -56,7 +56,6 @@ namespace Shapez2UILib
         /// <summary>
         /// hook the ui constructor to be able to add elements to it
         /// </summary>
-        /// <typeparam name="T">the type to add</typeparam>
         /// <param name="target">the target type</param>
         /// <param name="constructor">use this to add elements to the ui</param>
         public static void HookUIConstructor(Type target, Action<HUDComponent> constructor)
@@ -64,13 +63,13 @@ namespace Shapez2UILib
             constructorHooks.Add(new ConstructorHooks() { target = target, constructor = constructor });
         }
         /// <summary>
-        /// adds a custom ui element to the target
+        /// hook the ui constructor to be able to add elements to it
         /// </summary>
         /// <typeparam name="T">the type to add</typeparam>
         /// <param name="constructor">use this to add elements to the ui</param>
         public static void HookUIConstructor<T>(Action<T> constructor) where T : HUDComponent
         {
-            constructorHooks.Add(new ConstructorHooks() { target = typeof(Target), constructor = component => constructor.Invoke((T)component) });
+            constructorHooks.Add(new ConstructorHooks() { target = typeof(T), constructor = component => constructor.Invoke((T)component) });
         }
         public class ElementHook
         {

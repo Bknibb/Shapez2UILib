@@ -60,6 +60,7 @@ namespace Shapez2UILib
                     hudMenuBackButton.SetChildComponentReferences(new HUDComponent[] { backButton.GetComponentInChildren<HUDLocalizedText>(), backButton.GetComponentInChildren<HUDAnimatedRoundButton>() });
                     StaticResources.HUDMenuBackButton_TextIdInfo.SetValue(hudMenuBackButton, new SerializedTranslationId() { Id = new TranslationId(registration.nameTranslationId) });
                     hudMenuBackButton.OnClick.AddListener(ui.GoBack);
+                    ui.AddChildComponentReference(hudMenuBackButton);
                 }
                 registration.createUIFunc.Invoke(ui);
                 registration.instance = ui;
