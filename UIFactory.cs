@@ -690,5 +690,33 @@ namespace Shapez2UILib
             if (ConstructNow) parent.AddChildViewInternal<T>(ui);
             return ui;
         }
+        /// <summary>
+        /// helper to add a HUDComponent to a HUDComponent
+        /// the ui will be created at the full size of the parent by default
+        /// modify the RectTransform yourself to change the size/position
+        /// </summary>
+        /// <param name="Type">the HUDComponent type to add</typeparam>
+        /// <param name="uiConstructor">add ui elements in here</param>
+        /// <param name="parent">the parent to add the HUDComponent to</param>
+        /// <param name="name">the name of the new ui gameobject</param>
+        /// <param name="ConstructNow">if it should be constructed now, set this to true if doing this in the construct function or if the ui has already been constructed</param>
+        /// <returns>the added HUDComponent to then add elements to</returns>
+        public static HUDComponent AddHUDComponentToHUDComponent(Type type, Action<HUDComponent> uiConstructor, HUDComponent parent, string name, bool ConstructNow = false)
+        {
+            GameObject gameObject = new GameObject(name);
+            gameObject.transform.SetParent(parent.transform);
+            gameObject.transform.localScale = Vector3.one;
+            gameObject.layer = LayerMask.NameToLayer("UI");
+            RectTransform rectTransform = gameObject.AddComponent<RectTransform>();
+            rectTransform.anchorMin = Vector2.zero;
+            rectTransform.anchorMax = Vector2.one;
+            rectTransform.offsetMin = Vector2.zero;
+            rectTransform.offsetMax = Vector2.zero;
+            HUDComponent ui = (HUDComponent)gameObject.AddComponent(type);
+            uiConstructor.Invoke(ui);
+            parent.AddChildComponentReference(ui);
+            if (ConstructNow) parent.AddChildViewInternal(type, ui);
+            return ui;
+        }
     }
 }

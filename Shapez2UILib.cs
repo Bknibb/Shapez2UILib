@@ -17,6 +17,7 @@ namespace Shapez2UILib
             harmony = new Harmony("bknibb.Shapez2UILib");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
             harmony.PatchAll(typeof(MainMenuUIRegistrar));
+            harmony.PatchAll(typeof(UIHook));
         }
         public void Dispose()
         {
