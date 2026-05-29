@@ -11,8 +11,8 @@ namespace Shapez2UILib
         private static readonly List<ElementHook> elementHooks = new List<ElementHook>();
         private static readonly List<ConstructorHooks> constructorHooks = new List<ConstructorHooks>();
         [HarmonyPatch(typeof(HUDComponent), "Construct")]
-        [HarmonyPrefix]
-        private static void HUDComponentConstructorPrefix(HUDComponent __instance)
+        [HarmonyPostfix]
+        private static void HUDComponentConstructorPostfix(HUDComponent __instance)
         {
             foreach (var hook in elementHooks)
             {
