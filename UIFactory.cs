@@ -360,7 +360,7 @@ namespace Shapez2UILib
             componentChildComponentReferences.SetValue(hudInputField, new HUDComponent[] { hudLocalizedText });
             return hudInputField;
         }
-        public static HUDScrollContainer CreateScrollContainer()
+        private static HUDScrollContainer CreateScrollContainer()
         {
             GameObject ScrollContainer = new GameObject("ScrollContainer");
             GameObject.DontDestroyOnLoad(ScrollContainer);
@@ -509,7 +509,7 @@ namespace Shapez2UILib
             HUDScrollContainerUIScrollRectInfo.SetValue(hudScrollContainer, scrollRect);
             return hudScrollContainer;
         }
-        public static GameObject CreateDivider()
+        private static GameObject CreateDivider()
         {
             GameObject Divider = new GameObject("Divider");
             GameObject.DontDestroyOnLoad(Divider);
