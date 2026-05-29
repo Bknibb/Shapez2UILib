@@ -23,7 +23,7 @@ namespace Shapez2UILib
             }
             foreach (var hook in constructorHooks)
             {
-                if (hook.target != __instance.GetType())
+                if (hook.target == __instance.GetType())
                 {
                     hook.constructor.Invoke(__instance);
                 }
