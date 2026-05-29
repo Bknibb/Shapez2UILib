@@ -1,0 +1,17 @@
+﻿{
+  "Version": "1.0.0",
+  "Description": "A UI Library For Shapez 2",
+  "Author": "Bknibb",
+  "GameVersionSupportRange": ">=1.0.0",
+  "Assemblies": [
+    "Shapez2UILib.dll"
+  ],
+  "Dependencies": [
+    {
+      "ModId": "steam:3720742050",
+      "ModTitle": "HarmonyX",
+      "Version": "*"
+    }
+  ],
+  "Conflicts": []
+}
