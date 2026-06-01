@@ -10,6 +10,7 @@ namespace Shapez2UILib
     {
         private static readonly List<ElementHook> elementHooks = new List<ElementHook>();
         private static readonly List<ConstructorHooks> constructorHooks = new List<ConstructorHooks>();
+        private static readonly List<Action> lateStartHooks = new List<Action>();
         [HarmonyPatch(typeof(HUDComponent), "Construct")]
         [HarmonyPostfix]
         private static void HUDComponentConstructorPostfix(HUDComponent __instance)
@@ -28,6 +29,15 @@ namespace Shapez2UILib
                     hook.constructor.Invoke(__instance);
                 }
             }
+        }
+        public static bool RanLateStarts { get; private set; } = false;
+        [HarmonyPatch(typeof(MainMenuOrchestrator), "Step_0_2_InitStates")]
+        [HarmonyPrefix]
+        private static void MainMenuOrchestratorStep_0_2_InitStatesPrefix()
+        {
+            if (RanLateStarts) return;
+            RanLateStarts = true;
+            foreach (var hook in lateStartHooks) hook.Invoke();
         }
         /// <summary>
         /// adds a custom ui element to the target
@@ -70,6 +80,14 @@ namespace Shapez2UILib
         public static void HookUIConstructor<T>(Action<T> constructor) where T : HUDComponent
         {
             constructorHooks.Add(new ConstructorHooks() { target = typeof(T), constructor = component => constructor.Invoke((T)component) });
+        }
+        /// <summary>
+        /// will run a function when safe to load all ui resources
+        /// </summary>
+        /// <param name="func">the function to run</param>
+        public static void HookLateStart(Action func)
+        {
+            lateStartHooks.Add(func);
         }
         public class ElementHook
         {

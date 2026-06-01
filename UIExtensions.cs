@@ -1,4 +1,5 @@
 ﻿using Core.Dependency;
+using Core.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Text;
 using TMPro;
 using Unity.Core.View;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Shapez2UILib
 {
@@ -46,6 +48,14 @@ namespace Shapez2UILib
         public static void AddChildComponentReference(this HUDComponent hudComponent, HUDComponent toAdd)
         {
             hudComponent.SetChildComponentReferences(hudComponent.GetChildComponentReferences().Append(toAdd).ToArray());
+        }
+        public static Slider GetSlider(this HUDSliderControl hudSliderControl)
+        {
+            return (Slider)StaticResources.HUDSliderControlUISlider.GetValue(hudSliderControl);
+        }
+        public static void SetSerializedText(this HUDLocalizedText hudLocalizedText, TranslationId translationId)
+        {
+            StaticResources.HUDLocalizedText_TranslationInfo.SetValue(hudLocalizedText, new SerializedTranslationId() { Id = translationId });
         }
     }
 }
