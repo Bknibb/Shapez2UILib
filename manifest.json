@@ -1,8 +1,8 @@
 ﻿{
-  "Version": "1.1.0",
+  "Version": "1.1.1",
   "Description": "A UI Library For Shapez 2",
   "Author": "Bknibb",
-  "GameVersionSupportRange": ">=1.0.0",
+  "GameVersionSupportRange": ">=1.1.0",
   "Assemblies": [
     "Shapez2UILib.dll"
   ],
