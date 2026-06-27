@@ -46,7 +46,7 @@ namespace Shapez2UILib
             dialogRectTransform.offsetMax = Vector2.zero;
             GameObject background = GameObject.Instantiate(Globals.Resources.UIDialogSimpleInfoPrefab.Resolve().transform.GetChild(0).gameObject, dialogRectTransform, false);
             var hudDialogPrefabReferences = dialog.AddComponent<HUDDialogPrefabReferences>();
-            StaticResources.HUDDialogUIReferencesInfo.SetValue(dialogClass, hudDialogPrefabReferences);
+            dialogClass.UIReferences = hudDialogPrefabReferences;
             var canvasGroup = dialog.AddComponent<CanvasGroup>();
             canvasGroup.blocksRaycasts = true;
             canvasGroup.ignoreParentGroups = false;

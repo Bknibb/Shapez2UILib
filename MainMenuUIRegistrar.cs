@@ -57,8 +57,8 @@ namespace Shapez2UILib
                     GameObject backButton = GameObject.Instantiate(backButtonGameObject, gameObject.transform);
                     backButton.transform.localPosition = backButtonGameObject.transform.localPosition;
                     HUDMenuBackButton hudMenuBackButton = backButton.GetComponent<HUDMenuBackButton>();
-                    hudMenuBackButton.SetChildComponentReferences(new HUDComponent[] { backButton.GetComponentInChildren<HUDLocalizedText>(), backButton.GetComponentInChildren<HUDAnimatedRoundButton>() });
-                    StaticResources.HUDMenuBackButton_TextIdInfo.SetValue(hudMenuBackButton, new SerializedTranslationId() { Id = new TranslationId(registration.nameTranslationId) });
+                    hudMenuBackButton.ChildComponentReferences = new HUDComponent[] { backButton.GetComponentInChildren<HUDLocalizedText>(), backButton.GetComponentInChildren<HUDAnimatedRoundButton>() };
+                    hudMenuBackButton._TextId = new SerializedTranslationId() { Id = new TranslationId(registration.nameTranslationId) };
                     hudMenuBackButton.OnClick.AddListener(ui.GoBack);
                     ui.AddChildComponentReference(hudMenuBackButton);
                 }
@@ -78,9 +78,10 @@ namespace Shapez2UILib
                 {
                     if (lazyText.Id.Id == registration.addAfter)
                     {
-                        StaticResources.addMenuButtonMethod.Invoke(__instance, new object[] { registration.buttonText, new UnityAction(() => {
+                        __instance.AddMenuButton(registration.buttonText, new UnityAction(() =>
+                        {
                             StaticResources.IMainMenuStateControlSwitchToStateInfo.MakeGenericMethod(registration.type).Invoke(___Menu, new object[] { null });
-                        }) });
+                        }));
                     }
                 }
             }

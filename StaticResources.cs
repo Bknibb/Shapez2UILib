@@ -11,9 +11,7 @@ namespace Shapez2UILib
 {
     public static class StaticResources
     {
-        public static readonly FieldInfo componentChildComponentReferences = AccessTools.Field(typeof(HUDComponent), "ChildComponentReferences");
         public static readonly MethodInfo componentAddChildViewInternal = AccessTools.Method(typeof(HUDComponent), "AddChildViewInternal");
-        public static readonly FieldInfo componentDependencyResolver = AccessTools.Field(typeof(HUDComponent), "DependencyResolver");
         public static readonly Sprite HUDButtonBase = Resources.FindObjectsOfTypeAll<Sprite>().First(t => t.name == "HUDButtonBase");
         public static readonly Sprite HUDSecondaryButtonBase = Resources.FindObjectsOfTypeAll<Sprite>().First(t => t.name == "HUDSecondaryButtonBase");
         public static readonly Sprite HUDButtonHover = Resources.FindObjectsOfTypeAll<Sprite>().First(t => t.name == "HUDButtonHover");
@@ -44,51 +42,6 @@ namespace Shapez2UILib
         public static readonly Material UIAnimatedSecondaryPanelMaterial = Resources.FindObjectsOfTypeAll<Material>().First(m => m.name == "UI-AnimatedSecondaryPanelMaterial");
         public static readonly TMP_FontAsset FontMediumSDF = Resources.FindObjectsOfTypeAll<TMP_FontAsset>().First(m => m.name == "Font-Medium SDF");
         public static readonly TMP_FontAsset FontLightSDF = Resources.FindObjectsOfTypeAll<TMP_FontAsset>().First(m => m.name == "Font-Light SDF");
-        public static readonly FieldInfo HUDInputFieldUIInputFieldInfo = AccessTools.Field(typeof(HUDInputField), "UIInputField");
-        public static readonly FieldInfo HUDInputFieldUIPlaceholderTextInfo = AccessTools.Field(typeof(HUDInputField), "UIPlaceholderText");
-        public static readonly FieldInfo HUDScrollContainerUIScrollRectInfo = AccessTools.Field(typeof(HUDScrollContainer), "UIScrollRect");
-        public static readonly FieldInfo HUDLocalizedTextUITextInfo = AccessTools.Field(typeof(HUDLocalizedText), "UIText");
-        public static readonly FieldInfo HUDButtonUITextInfo = AccessTools.Field(typeof(HUDButton), "UIText");
-        public static readonly FieldInfo HUDButtonUIButtonInfo = AccessTools.Field(typeof(HUDButton), "UIButton");
-        public static readonly FieldInfo HUDButtonUIMainGroupInfo = AccessTools.Field(typeof(HUDButton), "UIMainGroup");
-        public static readonly FieldInfo HUDButtonUIHoverIndicatorGroupInfo = AccessTools.Field(typeof(HUDButton), "UIHoverIndicatorGroup");
-        public static readonly FieldInfo HUDButtonUIMainTransformInfo = AccessTools.Field(typeof(HUDButton), "UIMainTransform");
-        public static readonly FieldInfo HUDAnimatedRoundButtonUIButtonInfo = AccessTools.Field(typeof(HUDAnimatedRoundButton), "UIButton");
-        public static readonly FieldInfo HUDAnimatedRoundButtonUIIconSpriteInfo = AccessTools.Field(typeof(HUDAnimatedRoundButton), "UIIconSprite");
-        public static readonly FieldInfo HUDAnimatedRoundButtonUIIconTransformInfo = AccessTools.Field(typeof(HUDAnimatedRoundButton), "UIIconTransform");
-        public static readonly FieldInfo HUDAnimatedRoundButtonUIMainIconInfo = AccessTools.Field(typeof(HUDAnimatedRoundButton), "UIMainIcon");
-        public static readonly FieldInfo tmpInputFieldRegexValue = AccessTools.Field(typeof(TMP_InputField), "m_RegexValue");
-        public static readonly MethodInfo addMenuButtonMethod = AccessTools.Method(typeof(HUDMenuMainState), "AddMenuButton");
         public static readonly MethodInfo IMainMenuStateControlSwitchToStateInfo = AccessTools.Method(typeof(IMainMenuStateControl), nameof(IMainMenuStateControl.SwitchToState));
-        public static readonly FieldInfo HUDMenuBackButton_TextIdInfo = AccessTools.Field(typeof(HUDMenuBackButton), "_TextId");
-        public static readonly FieldInfo HUDComponentChildren = AccessTools.Field(typeof(HUDComponent), "Children");
-        public static readonly FieldInfo HUDComponentLoadedChildren = AccessTools.Field(typeof(HUDComponent), "LoadedChildren");
-        public static readonly FieldInfo HUDIconButtonUIActiveGroup = AccessTools.Field(typeof(HUDIconButton), "UIActiveGroup");
-        public static readonly FieldInfo HUDIconButtonUIBadge = AccessTools.Field(typeof(HUDIconButton), "UIBadge");
-        public static readonly FieldInfo HUDIconButtonUIButton = AccessTools.Field(typeof(HUDIconButton), "UIButton");
-        public static readonly FieldInfo HUDIconButtonUIHighlightGroup = AccessTools.Field(typeof(HUDIconButton), "UIHighlightGroup");
-        public static readonly FieldInfo HUDIconButtonUIHoverIndicatorGroup = AccessTools.Field(typeof(HUDIconButton), "UIHoverIndicatorGroup");
-        public static readonly FieldInfo HUDIconButtonUIIcon = AccessTools.Field(typeof(HUDIconButton), "UIIcon");
-        public static readonly FieldInfo HUDIconButtonUIMainGroup = AccessTools.Field(typeof(HUDIconButton), "UIMainGroup");
-        public static readonly FieldInfo HUDIconButtonUIMainTransform = AccessTools.Field(typeof(HUDIconButton), "UIMainTransform");
-        public static readonly FieldInfo HUDIconButtonUITooltipTarget = AccessTools.Field(typeof(HUDIconButton), "UITooltipTarget");
-        public static readonly FieldInfo HUDIconButton_TooltipAlignment = AccessTools.Field(typeof(HUDIconButton), "_TooltipAlignment");
-        public static readonly FieldInfo HUDIconButton_TooltipKeybinding = AccessTools.Field(typeof(HUDIconButton), "_TooltipKeybinding");
-        public static readonly FieldInfo HUDIconButton_Icon = AccessTools.Field(typeof(HUDIconButton), "_Icon");
-        public static readonly FieldInfo HUDIconButton_HasTooltip = AccessTools.Field(typeof(HUDIconButton), "_HasTooltip");
-        public static readonly FieldInfo HUDBadgeUIBadgeTransform = AccessTools.Field(typeof(HUDBadge), "UIBadgeTransform");
-        public static readonly FieldInfo HUDToggleControlUIButton = AccessTools.Field(typeof(HUDToggleControl), "UIButton");
-        public static readonly FieldInfo HUDToggleControlUIKnobTransform = AccessTools.Field(typeof(HUDToggleControl), "UIKnobTransform");
-        public static readonly FieldInfo HUDToggleControlUIMainGroup = AccessTools.Field(typeof(HUDToggleControl), "UIMainGroup");
-        public static readonly FieldInfo HUDToggleControlUIOffIndicator = AccessTools.Field(typeof(HUDToggleControl), "UIOffIndicator");
-        public static readonly FieldInfo HUDToggleControlUIOnIndicator = AccessTools.Field(typeof(HUDToggleControl), "UIOnIndicator");
-        public static readonly FieldInfo HUDDropdownControlUIDropdown = AccessTools.Field(typeof(HUDDropdownControl), "UIDropdown");
-        public static readonly FieldInfo HUDDropdownControlUIMainGroup = AccessTools.Field(typeof(HUDDropdownControl), "UIMainGroup");
-        public static readonly FieldInfo HUDDropdownControlUIValueText = AccessTools.Field(typeof(HUDDropdownControl), "UIValueText");
-        public static readonly FieldInfo HUDEnumSelectorControlUIDropdown = AccessTools.Field(typeof(HUDEnumSelectorControl), "UIDropdown");
-        public static readonly FieldInfo HUDSliderControlUISlider = AccessTools.Field(typeof(HUDSliderControl), "UISlider");
-        public static readonly FieldInfo HUDSliderControlUIValueText = AccessTools.Field(typeof(HUDSliderControl), "UIValueText");
-        public static readonly FieldInfo HUDDialogUIReferencesInfo = AccessTools.Field(typeof(HUDDialog), "UIReferences");
-        public static readonly FieldInfo HUDLocalizedText_TranslationInfo = AccessTools.Field(typeof(HUDLocalizedText), "_Translation");
     }
 }

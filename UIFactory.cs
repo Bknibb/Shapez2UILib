@@ -176,16 +176,16 @@ namespace Shapez2UILib
             TextMeshProUGUI textTMP = Text.AddComponent<TextMeshProUGUI>();
             SetupPrimaryText(textTMP);
             HUDLocalizedText hudLocalizedText = Text.AddComponent<HUDLocalizedText>();
-            HUDLocalizedTextUITextInfo.SetValue(hudLocalizedText, textTMP);
+            hudLocalizedText.UIText = textTMP;
             Button buttonButton = Button.AddComponent<Button>();
             buttonButton.image = bgImage;
             HUDButton hudButton = Button.AddComponent<HUDButton>();
-            HUDButtonUIButtonInfo.SetValue(hudButton, buttonButton);
-            HUDButtonUITextInfo.SetValue(hudButton, hudLocalizedText);
-            HUDButtonUIMainGroupInfo.SetValue(hudButton, canvasGroup);
-            HUDButtonUIHoverIndicatorGroupInfo.SetValue(hudButton, hoverIndicatorCanvasGroup);
-            HUDButtonUIMainTransformInfo.SetValue(hudButton, rectTransform);
-            componentChildComponentReferences.SetValue(hudButton, new HUDComponent[] { hudLocalizedText });
+            hudButton.UIButton = buttonButton;
+            hudButton.UIText = hudLocalizedText;
+            hudButton.UIMainGroup = canvasGroup;
+            hudButton.UIHoverIndicatorGroup = hoverIndicatorCanvasGroup;
+            hudButton.UIMainTransform = rectTransform;
+            hudButton.ChildComponentReferences = new HUDComponent[] { hudLocalizedText };
             return hudButton;
         }
         private static HUDAnimatedRoundButton CreateAnimatedRoundButton()
@@ -236,9 +236,9 @@ namespace Shapez2UILib
                 fadeDuration = 0.1f
             };
             HUDAnimatedRoundButton hudAnimatedRoundButton = AnimatedRoundButton.AddComponent<HUDAnimatedRoundButton>();
-            HUDAnimatedRoundButtonUIButtonInfo.SetValue(hudAnimatedRoundButton, animatedRoundButtonButton);
-            HUDAnimatedRoundButtonUIIconTransformInfo.SetValue(hudAnimatedRoundButton, iconRectTransform);
-            HUDAnimatedRoundButtonUIMainIconInfo.SetValue(hudAnimatedRoundButton, iconImage);
+            hudAnimatedRoundButton.UIButton = animatedRoundButtonButton;
+            hudAnimatedRoundButton.UIIconTransform = iconRectTransform;
+            hudAnimatedRoundButton.UIMainIcon = iconImage;
             return hudAnimatedRoundButton;
         }
         private static HUDIconButton CreateIconButton()
@@ -346,24 +346,24 @@ namespace Shapez2UILib
             HUDBadge hudBadge = hudBadgeGO.AddComponent<HUDBadge>();
             hudBadge.Active = false;
             hudBadgeGO.SetActiveSelfExt(false);
-            HUDBadgeUIBadgeTransform.SetValue(hudBadge, hudBadgeRectTransform);
+            hudBadge.UIBadgeTransform = hudBadgeRectTransform;
             Button button = IconButton.AddComponent<Button>();
             button.image = iconImage;
             button.transition = Selectable.Transition.None;
             HUDIconButton hudIconButton = IconButton.AddComponent<HUDIconButton>();
-            HUDIconButtonUIActiveGroup.SetValue(hudIconButton, activeBgCanvasGroup);
-            HUDIconButtonUIBadge.SetValue(hudIconButton, hudBadge);
-            HUDIconButtonUIButton.SetValue(hudIconButton, button);
-            HUDIconButtonUIHighlightGroup.SetValue(hudIconButton, highlightCanvasGroup);
-            HUDIconButtonUIHoverIndicatorGroup.SetValue(hudIconButton, hoverBgCanvasGroup);
-            HUDIconButtonUIIcon.SetValue(hudIconButton, iconImage);
-            HUDIconButtonUIMainGroup.SetValue(hudIconButton, canvasGroup);
-            HUDIconButtonUIMainTransform.SetValue(hudIconButton, rectTransform);
-            HUDIconButtonUITooltipTarget.SetValue(hudIconButton, hudTooltipTarget);
-            HUDIconButton_TooltipAlignment.SetValue(hudIconButton, HUDTooltip.TooltipAlignment.Left_Middle);
-            HUDIconButton_TooltipKeybinding.SetValue(hudIconButton, "");
-            HUDIconButton_HasTooltip.SetValue(hudIconButton, false);
-            hudIconButton.SetChildComponentReferences(new HUDComponent[] { hudBadge });
+            hudIconButton.UIActiveGroup = activeBgCanvasGroup;
+            hudIconButton.UIBadge = hudBadge;
+            hudIconButton.UIButton = button;
+            hudIconButton.UIHighlightGroup = highlightCanvasGroup;
+            hudIconButton.UIHoverIndicatorGroup = hoverBgCanvasGroup;
+            hudIconButton.UIIcon = iconImage;
+            hudIconButton.UIMainGroup = canvasGroup;
+            hudIconButton.UIMainTransform = rectTransform;
+            hudIconButton.UITooltipTarget = hudTooltipTarget;
+            hudIconButton.TooltipAlignment = HUDTooltip.TooltipAlignment.Left_Middle;
+            hudIconButton.TooltipKeybinding = "";
+            hudIconButton.HasTooltip = false;
+            hudIconButton.ChildComponentReferences = new HUDComponent[] { hudBadge };
             return hudIconButton;
         }
         private static TextMeshProUGUI CreateTextPrimary()
@@ -395,7 +395,7 @@ namespace Shapez2UILib
             TextMeshProUGUI textTMP = Text.AddComponent<TextMeshProUGUI>();
             SetupPrimaryText(textTMP);
             HUDLocalizedText hudLocalizedText = Text.AddComponent<HUDLocalizedText>();
-            HUDLocalizedTextUITextInfo.SetValue(hudLocalizedText, textTMP);
+            hudLocalizedText.UIText = textTMP;
             return hudLocalizedText;
         }
         private static HUDLocalizedText CreateLocalizedTextSecondary()
@@ -407,7 +407,7 @@ namespace Shapez2UILib
             TextMeshProUGUI textTMP = Text.AddComponent<TextMeshProUGUI>();
             SetupSecondaryText(textTMP);
             HUDLocalizedText hudLocalizedText = Text.AddComponent<HUDLocalizedText>();
-            HUDLocalizedTextUITextInfo.SetValue(hudLocalizedText, textTMP);
+            hudLocalizedText.UIText = textTMP;
             return hudLocalizedText;
         }
         private static HUDInputField CreateInputField()
@@ -459,7 +459,7 @@ namespace Shapez2UILib
             placeholderTextMeshProUGUI.fontSizeMin = 18;
             placeholderTextMeshProUGUI.isOrthographic = true;
             HUDLocalizedText hudLocalizedText = Placeholder.AddComponent<HUDLocalizedText>();
-            HUDLocalizedTextUITextInfo.SetValue(hudLocalizedText, placeholderTextMeshProUGUI);
+            hudLocalizedText.UIText = placeholderTextMeshProUGUI;
             GameObject Text = new GameObject("Text");
             Text.transform.SetParent(TextArea.transform);
             Text.layer = LayerMask.NameToLayer("UI");
@@ -511,11 +511,11 @@ namespace Shapez2UILib
                 pressedColor = new Color(0, 0, 0, 0.549f),
                 selectedColor = new Color(0, 0, 0, 0.451f)
             };
-            tmpInputFieldRegexValue.SetValue(tmp_InputField, "^([^\\n\\r])$");
+            tmp_InputField.m_RegexValue = "^([^\\n\\r])$";
             HUDInputField hudInputField = InputField.AddComponent<HUDInputField>();
-            HUDInputFieldUIInputFieldInfo.SetValue(hudInputField, tmp_InputField);
-            HUDInputFieldUIPlaceholderTextInfo.SetValue(hudInputField, hudLocalizedText);
-            componentChildComponentReferences.SetValue(hudInputField, new HUDComponent[] { hudLocalizedText });
+            hudInputField.UIInputField = tmp_InputField;
+            hudInputField.UIPlaceholderText = hudLocalizedText;
+            hudInputField.ChildComponentReferences = new HUDComponent[] { hudLocalizedText };
             return hudInputField;
         }
         private static HUDScrollContainer CreateScrollContainer()
@@ -666,7 +666,7 @@ namespace Shapez2UILib
             scrollbarVerticalSlidingAreaRectTransform.anchoredPosition = new Vector2(-2.5f, 0);
             scrollbarVerticalSlidingAreaRectTransform.sizeDelta = new Vector2(-15, -60);
             HUDScrollContainer hudScrollContainer = ScrollContainer.AddComponent<HUDScrollContainer>();
-            HUDScrollContainerUIScrollRectInfo.SetValue(hudScrollContainer, scrollRect);
+            hudScrollContainer.UIScrollRect = scrollRect;
             return hudScrollContainer;
         }
         private static GameObject CreateDivider()
@@ -775,11 +775,11 @@ namespace Shapez2UILib
                 fadeDuration = 0.2f
             };
             HUDToggleControl hudToggleControl = ToggleControl.AddComponent<HUDToggleControl>();
-            HUDToggleControlUIButton.SetValue(hudToggleControl, button);
-            HUDToggleControlUIKnobTransform.SetValue(hudToggleControl, knobRectTransform);
-            HUDToggleControlUIMainGroup.SetValue(hudToggleControl, canvasGroup);
-            HUDToggleControlUIOffIndicator.SetValue(hudToggleControl, offBgCanvasGroup);
-            HUDToggleControlUIOnIndicator.SetValue(hudToggleControl, onBgCanvasGroup);
+            hudToggleControl.UIButton = button;
+            hudToggleControl.UIKnobTransform = knobRectTransform;
+            hudToggleControl.UIMainGroup = canvasGroup;
+            hudToggleControl.UIOffIndicator = offBgCanvasGroup;
+            hudToggleControl.UIOnIndicator = onBgCanvasGroup;
             return hudToggleControl;
         }
         private static HUDEnumSelectorControl CreateEnumSelector()
@@ -811,7 +811,7 @@ namespace Shapez2UILib
             LayoutElement hudDropdownControlLayoutElement = hudDropdownControl.gameObject.AddComponent<LayoutElement>();
             hudDropdownControlLayoutElement.minHeight = 50;
             hudDropdownControlLayoutElement.preferredHeight = 50;
-            HUDEnumSelectorControlUIDropdown.SetValue(hudEnumSelectorControl, hudDropdownControl);
+            hudEnumSelectorControl.UIDropdown = hudDropdownControl;
             return hudEnumSelectorControl;
         }
         private static HUDDropdownControl CreateDropdown()
@@ -872,7 +872,7 @@ namespace Shapez2UILib
             labelRectTransform.anchorMax = Vector2.one;
             labelRectTransform.offsetMin = new Vector2(11.1181f, 6f);
             labelRectTransform.offsetMax = new Vector2(-23.6303f, -7f);
-            TMP_Text labelText = labelHudLocalizedText.GetText();
+            TMP_Text labelText = labelHudLocalizedText.UIText;
             labelText.alignment = TextAlignmentOptions.Left;
             labelText.color = Color.white;
             labelText.fontSize = 19.85f;
@@ -1057,9 +1057,9 @@ namespace Shapez2UILib
             HUDCustomTMPDropdown hudCustomTMPDropdown = Dropdown.AddComponent<HUDCustomTMPDropdown>();
             hudCustomTMPDropdown.template = templateRectTransform;
             hudCustomTMPDropdown.itemText = itemLabelText;
-            HUDDropdownControlUIDropdown.SetValue(hudDropdownControl, hudCustomTMPDropdown);
-            HUDDropdownControlUIMainGroup.SetValue(hudDropdownControl, canvasGroup);
-            HUDDropdownControlUIValueText.SetValue(hudDropdownControl, labelHudLocalizedText);
+            hudDropdownControl.UIDropdown = hudCustomTMPDropdown;
+            hudDropdownControl.UIMainGroup = canvasGroup;
+            hudDropdownControl.UIValueText = labelHudLocalizedText;
             hudCustomTMPDropdown.colors = new ColorBlock()
             {
                 normalColor = new Color(1, 1, 1, 0),
@@ -1092,7 +1092,7 @@ namespace Shapez2UILib
             textRectTransform.anchorMax = new Vector2(1, 0.5f);
             textRectTransform.offsetMin = new Vector2(-57.8628f, -15.8583f);
             textRectTransform.offsetMax = new Vector2(0, 15.8583f);
-            TMP_Text text = hudLocalizedText.GetText();
+            TMP_Text text = hudLocalizedText.UIText;
             text.enableAutoSizing = false;
             GameObject SliderSlider = new GameObject("Slider");
             SliderSlider.transform.SetParent(Slider.transform);
@@ -1172,8 +1172,8 @@ namespace Shapez2UILib
             };
             sliderSliderSlider.image = handleProceduralImage;
             sliderSliderSlider.wholeNumbers = true;
-            HUDSliderControlUISlider.SetValue(hudSliderControl, sliderSliderSlider);
-            HUDSliderControlUIValueText.SetValue(hudSliderControl, hudLocalizedText);
+            hudSliderControl.UISlider = sliderSliderSlider;
+            hudSliderControl.UIValueText = hudLocalizedText;
             return hudSliderControl;
         }
         public static void SetupPrimaryText(TextMeshProUGUI text)
@@ -1241,7 +1241,7 @@ namespace Shapez2UILib
             button.transform.localScale = Vector3.one;
             button.SetActiveSelfExt(true);
             var component = button.GetComponent<HUDAnimatedRoundButton>();
-            if (icon != null) HUDAnimatedRoundButtonUIIconSpriteInfo.SetValue(component, icon);
+            if (icon != null) component.UIIconSprite = icon;
             targetComponent.AddChildComponentReference(component);
             if (ConstructNow) targetComponent.AddChildViewInternal<HUDAnimatedRoundButton>(component);
             return component;
@@ -1252,7 +1252,7 @@ namespace Shapez2UILib
             button.transform.localScale = Vector3.one;
             button.SetActiveSelfExt(true);
             var component = button.GetComponent<HUDIconButton>();
-            if (icon != null) HUDIconButton_Icon.SetValue(component, icon);
+            if (icon != null) component.Icon = icon;
             targetComponent.AddChildComponentReference(component);
             if (ConstructNow) targetComponent.AddChildViewInternal<HUDIconButton>(component);
             return component;
