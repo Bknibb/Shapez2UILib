@@ -1252,7 +1252,7 @@ namespace Shapez2UILib
             button.transform.localScale = Vector3.one;
             button.SetActiveSelfExt(true);
             var component = button.GetComponent<HUDIconButton>();
-            if (icon != null) component.Icon = icon;
+            if (icon != null) component._Icon = icon;
             targetComponent.AddChildComponentReference(component);
             if (ConstructNow) targetComponent.AddChildViewInternal<HUDIconButton>(component);
             return component;
